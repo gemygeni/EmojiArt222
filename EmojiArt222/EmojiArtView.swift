@@ -50,9 +50,7 @@ class EmojiArtView: UIView, UIDropInteractionDelegate {
         label.center = point
         addEmojiArtGestureRecognizers(to: label)
         addSubview(label)
-        
-        
-    }
+                    }
     
     
     

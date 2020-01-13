@@ -155,6 +155,54 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="AddEmojiCell" id="4Sa-U9-xkc">
+                                        <rect key="frame" x="180" y="15" width="80" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dqy-1H-Gpa">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIK-Vp-fLw">
+                                                    <rect key="frame" x="27.5" y="13" width="25" height="24"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addEmoji:" destination="BYZ-38-t0r" eventType="touchUpInside" id="du8-lZ-c85"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mIK-Vp-fLw" firstAttribute="centerX" secondItem="dqy-1H-Gpa" secondAttribute="centerX" id="jwu-K2-11W"/>
+                                                <constraint firstItem="mIK-Vp-fLw" firstAttribute="centerY" secondItem="dqy-1H-Gpa" secondAttribute="centerY" id="yYf-oX-IdD"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="EmojiInputCell" id="eXZ-cx-RsM" customClass="textFieldCollectionViewCell" customModule="EmojiArt222" customModuleProvider="target">
+                                        <rect key="frame" x="270" y="15" width="80" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="k5B-SI-k5k">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CrI-9c-gUn">
+                                                    <rect key="frame" x="20" y="-12" width="40" height="74"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textField:" destination="Aj8-7A-g09" eventType="editingDidEnd" id="VQa-CB-RlW"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CrI-9c-gUn" firstAttribute="centerY" secondItem="k5B-SI-k5k" secondAttribute="centerY" id="BJ9-83-Hfi"/>
+                                                <constraint firstItem="CrI-9c-gUn" firstAttribute="centerX" secondItem="k5B-SI-k5k" secondAttribute="centerX" id="Yz0-yw-PGk"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="CrI-9c-gUn" id="HMV-JE-aey"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
@@ -180,6 +228,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Aj8-7A-g09" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2312.5" y="942.18749999999989"/>
         </scene>

@@ -10,11 +10,6 @@ import UIKit
 
 class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     
-    
-    
-    
-    
-
    var emojiArtView = EmojiArtView()
     
     
@@ -35,8 +30,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
-    
-    
+        
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         scrollViewHeight.constant = scrollView.contentSize.height
         scrollViewWidth.constant =  scrollView.contentSize.width
@@ -44,23 +38,44 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     
     
     
-    
-    
-    
-    
     var emojis = "😂🤪🦊🐥🦆🐝🦋🦚🌵🌴🍄🌼❤️🍎🌶🚙🚲🚘⚽️🏀🥊".map{String($0)}
+    
+    
     @IBOutlet weak var emojiCollectionView: UICollectionView!{
         didSet{
             emojiCollectionView.dataSource = self
             emojiCollectionView.delegate = self
             emojiCollectionView.dragDelegate = self
             emojiCollectionView.dropDelegate = self
-            
         }
     }
     
+    
+  private var addingEmoji = false
+
+    @IBAction func addEmoji(_ sender: UIButton) {
+      addingEmoji = true
+        emojiCollectionView.reloadSections(IndexSet(integer: 0 ))
+        
+     }
+     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let InputCell = cell as? textFieldCollectionViewCell {
+            InputCell.textField.becomeFirstResponder()
+        }
+    }
+    
+    
+    // MARK: - collectionView Data Source
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+      return  2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        emojis.count
+        switch  section {
+        case 0 :  return 1
+        case 1 : return emojis.count
+        default : return 0
+        }
     }
     
     private var font : UIFont{
@@ -68,28 +83,48 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 1{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
         if let emojiCell = cell as? EmojiCollectionViewCell{
             let text = NSAttributedString(string: emojis[indexPath.item], attributes: [.font : font])
             emojiCell.label.attributedText = text
         }
-        return cell
+            return cell
+        }
+        else if addingEmoji {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiInputCell", for: indexPath)
+            
+            if let inputCell = cell as? textFieldCollectionViewCell{
+                inputCell.resignationHandler = {[weak self, unowned inputCell] in
+                    if let text = inputCell.textField.text{
+                        self?.emojis = (text.map{String ($0)} + self!.emojis).uniquified
+                    }
+                    self?.addingEmoji = false
+                    self?.emojiCollectionView.reloadData()
+                }
+            }
+            return cell
+        }
+        else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddEmojiCell", for: indexPath)
+            return cell
+        }
     }
     
-    
+    // MARK: - collectionviewDragDelegate
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         
         session.localContext = collectionView
         return dragItems (at : indexPath)
     }
     
-    
+
     func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
         return dragItems (at : indexPath)
     }
     
     func dragItems (at indexpath : IndexPath) -> [UIDragItem]{
-        if let atrributedString =  (emojiCollectionView.cellForItem(at: indexpath) as? EmojiCollectionViewCell)?.label.attributedText  {
+        if !addingEmoji, let atrributedString =  (emojiCollectionView.cellForItem(at: indexpath) as? EmojiCollectionViewCell)?.label.attributedText  {
         let dragitem = UIDragItem(itemProvider: NSItemProvider(object: atrributedString))
             dragitem.localObject = atrributedString
             return [dragitem]
@@ -97,16 +132,30 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         else {return []}
     }
     
+    // MARK: - UICollectionViewDelegateFlowLayout
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           if addingEmoji && indexPath.section == 0 {
+               return CGSize(width: 300, height: 80)
+           }
+           else {
+               return CGSize(width: 80, height: 80)
+           }
+       }
     
     
+    // MARK: - UICollectionviewDropDelegate
     func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
         return session.canLoadObjects(ofClass: NSAttributedString.self)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        if let indexpath = destinationIndexPath, indexpath.section == 1 {
+        
         let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView
-        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy   , intent: .insertAtDestinationIndexPath)
+        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy  , intent: .insertAtDestinationIndexPath)
+    }
+        else {return UICollectionViewDropProposal(operation: .cancel)}
     }
     
     
@@ -126,6 +175,8 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                     coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
                 }
             }
+                
+                
             else{
                 let placeholderContext = coordinator.drop(item.dragItem,
                             to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath,
@@ -147,8 +198,9 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
                        }
                    }
         
-        
-     
+    
+    
+    
     var emojiArtBackgroundImage : UIImage?{
         get{
             return emojiArtView.backgroundImage
@@ -163,7 +215,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             if let dropZone = self.dropZone, size.width > 0, size.height > 0 {
                            scrollView?.zoomScale = max(dropZone.bounds.size.width / size.width, dropZone.bounds.size.height / size.height)
                        }
-        }
+           }
     }
     
     
@@ -187,14 +239,13 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             DispatchQueue.main.async {
                 self.emojiArtBackgroundImage = image
             }
-            
         }
         
         session.loadObjects(ofClass: NSURL.self){
             nsurls in
             if let url = nsurls.first as? URL{
             self.imageFetcher.fetch(url)
-        }
+           }
         }
         
         session.loadObjects(ofClass: UIImage.self){
@@ -202,21 +253,7 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             if let image = images.first as? UIImage {
                 self.imageFetcher.backup = image
             }
-               }
-        
+        }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-   
-
 }
