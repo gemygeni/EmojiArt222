@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF0CBD2123CD4C5300C57B07 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CBD2023CD4C5300C57B07 /* Utilities.swift */; };
 		EF15CA7423CBF1A2001A3EDB /* EmojiArtView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15CA7323CBF1A2001A3EDB /* EmojiArtView+Gestures.swift */; };
-		EF15CA7623CBF1B5001A3EDB /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15CA7523CBF1B5001A3EDB /* Utilities.swift */; };
+		EF15CA7823CBF3A0001A3EDB /* EmojiArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15CA7723CBF3A0001A3EDB /* EmojiArt.swift */; };
+		EF9DC7B523CD47FB00B17501 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9DC7B423CD47FB00B17501 /* Default-568h@2x.png */; };
 		EFAD75E823C95CF800FA1F58 /* textFieldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAD75E723C95CF800FA1F58 /* textFieldCollectionViewCell.swift */; };
 		EFC4D18B23A0725D002E0B5F /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC4D18A23A0725D002E0B5F /* EmojiCollectionViewCell.swift */; };
 		EFEC86A0239B2FC90053ACCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEC869F239B2FC90053ACCE /* AppDelegate.swift */; };
@@ -22,11 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF0CBD2023CD4C5300C57B07 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../../Utilities.swift; sourceTree = "<group>"; };
 		EF15CA7323CBF1A2001A3EDB /* EmojiArtView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmojiArtView+Gestures.swift"; sourceTree = "<group>"; };
-		EF15CA7523CBF1B5001A3EDB /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		EF15CA7723CBF3A0001A3EDB /* EmojiArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArt.swift; sourceTree = "<group>"; };
+		EF9DC7B423CD47FB00B17501 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EFAD75E723C95CF800FA1F58 /* textFieldCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldCollectionViewCell.swift; sourceTree = "<group>"; };
 		EFC4D18A23A0725D002E0B5F /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		EFEC869C239B2FC90053ACCE /* EmojiArt222.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt222.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEC869C239B2FC90053ACCE /* EmojiArt222OLD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt222OLD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEC869F239B2FC90053ACCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEC86A1239B2FC90053ACCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EFEC86A6239B2FC90053ACCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +56,8 @@
 		EFEC8693239B2FC90053ACCE = {
 			isa = PBXGroup;
 			children = (
-				EFEC869E239B2FC90053ACCE /* EmojiArt222 */,
+				EF9DC7B423CD47FB00B17501 /* Default-568h@2x.png */,
+				EFEC869E239B2FC90053ACCE /* EmojiArt222OLD */,
 				EFEC869D239B2FC90053ACCE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,12 +65,12 @@
 		EFEC869D239B2FC90053ACCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EFEC869C239B2FC90053ACCE /* EmojiArt222.app */,
+				EFEC869C239B2FC90053ACCE /* EmojiArt222OLD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EFEC869E239B2FC90053ACCE /* EmojiArt222 */ = {
+		EFEC869E239B2FC90053ACCE /* EmojiArt222OLD */ = {
 			isa = PBXGroup;
 			children = (
 				EFC4D18A23A0725D002E0B5F /* EmojiCollectionViewCell.swift */,
@@ -74,17 +79,18 @@
 				EFEC86C2239C44540053ACCE /* EmojiArtDocumentTableViewController.swift */,
 				EFEC86BE239BF5060053ACCE /* EmojiArtView.swift */,
 				EFEC86BC239BF4180053ACCE /* EmojiArtViewController.swift */,
-				EFEC86B3239B2FDF0053ACCE /* support files */,
+				EF15CA7723CBF3A0001A3EDB /* EmojiArt.swift */,
+				EF0CBD2023CD4C5300C57B07 /* Utilities.swift */,
 				EFEC86AD239B2FCB0053ACCE /* Info.plist */,
+				EFEC86B3239B2FDF0053ACCE /* support files */,
 			);
-			path = EmojiArt222;
+			path = EmojiArt222OLD;
 			sourceTree = "<group>";
 		};
 		EFEC86B3239B2FDF0053ACCE /* support files */ = {
 			isa = PBXGroup;
 			children = (
 				EF15CA7323CBF1A2001A3EDB /* EmojiArtView+Gestures.swift */,
-				EF15CA7523CBF1B5001A3EDB /* Utilities.swift */,
 				EFEC86AA239B2FCB0053ACCE /* LaunchScreen.storyboard */,
 				EFEC869F239B2FC90053ACCE /* AppDelegate.swift */,
 				EFEC86A1239B2FC90053ACCE /* SceneDelegate.swift */,
@@ -96,9 +102,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EFEC869B239B2FC90053ACCE /* EmojiArt222 */ = {
+		EFEC869B239B2FC90053ACCE /* EmojiArt222OLD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFEC86B0239B2FCB0053ACCE /* Build configuration list for PBXNativeTarget "EmojiArt222" */;
+			buildConfigurationList = EFEC86B0239B2FCB0053ACCE /* Build configuration list for PBXNativeTarget "EmojiArt222OLD" */;
 			buildPhases = (
 				EFEC8698239B2FC90053ACCE /* Sources */,
 				EFEC8699239B2FC90053ACCE /* Frameworks */,
@@ -108,9 +114,9 @@
 			);
 			dependencies = (
 			);
-			name = EmojiArt222;
+			name = EmojiArt222OLD;
 			productName = EmojiArt222;
-			productReference = EFEC869C239B2FC90053ACCE /* EmojiArt222.app */;
+			productReference = EFEC869C239B2FC90053ACCE /* EmojiArt222OLD.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -128,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EFEC8697239B2FC90053ACCE /* Build configuration list for PBXProject "EmojiArt222" */;
+			buildConfigurationList = EFEC8697239B2FC90053ACCE /* Build configuration list for PBXProject "EmojiArt222OLD" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -141,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EFEC869B239B2FC90053ACCE /* EmojiArt222 */,
+				EFEC869B239B2FC90053ACCE /* EmojiArt222OLD */,
 			);
 		};
 /* End PBXProject section */
@@ -152,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFEC86AC239B2FCB0053ACCE /* LaunchScreen.storyboard in Resources */,
+				EF9DC7B523CD47FB00B17501 /* Default-568h@2x.png in Resources */,
 				EFEC86A9239B2FCB0053ACCE /* Assets.xcassets in Resources */,
 				EFEC86A7239B2FC90053ACCE /* Main.storyboard in Resources */,
 			);
@@ -165,13 +172,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFC4D18B23A0725D002E0B5F /* EmojiCollectionViewCell.swift in Sources */,
-				EF15CA7623CBF1B5001A3EDB /* Utilities.swift in Sources */,
+				EF15CA7823CBF3A0001A3EDB /* EmojiArt.swift in Sources */,
 				EFEC86A0239B2FC90053ACCE /* AppDelegate.swift in Sources */,
 				EFAD75E823C95CF800FA1F58 /* textFieldCollectionViewCell.swift in Sources */,
 				EFEC86C3239C44540053ACCE /* EmojiArtDocumentTableViewController.swift in Sources */,
 				EF15CA7423CBF1A2001A3EDB /* EmojiArtView+Gestures.swift in Sources */,
 				EFEC86BF239BF5060053ACCE /* EmojiArtView.swift in Sources */,
 				EFEC86BD239BF4180053ACCE /* EmojiArtViewController.swift in Sources */,
+				EF0CBD2123CD4C5300C57B07 /* Utilities.swift in Sources */,
 				EFEC86A2239B2FC90053ACCE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,13 +326,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 376L6GYCXP;
-				INFOPLIST_FILE = EmojiArt222/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/EmojiArt222OLD/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "AHMED-GAMAL-.EmojiArt.EmojiArt222";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "AHMED-GAMAL-.-EmojiArt222OLD";
+				PRODUCT_NAME = EmojiArt222OLD;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -336,13 +344,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 376L6GYCXP;
-				INFOPLIST_FILE = EmojiArt222/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/EmojiArt222OLD/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "AHMED-GAMAL-.EmojiArt.EmojiArt222";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "AHMED-GAMAL-.-EmojiArt222OLD";
+				PRODUCT_NAME = EmojiArt222OLD;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -351,7 +359,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EFEC8697239B2FC90053ACCE /* Build configuration list for PBXProject "EmojiArt222" */ = {
+		EFEC8697239B2FC90053ACCE /* Build configuration list for PBXProject "EmojiArt222OLD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFEC86AE239B2FCB0053ACCE /* Debug */,
@@ -360,7 +368,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EFEC86B0239B2FCB0053ACCE /* Build configuration list for PBXNativeTarget "EmojiArt222" */ = {
+		EFEC86B0239B2FCB0053ACCE /* Build configuration list for PBXNativeTarget "EmojiArt222OLD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFEC86B1239B2FCB0053ACCE /* Debug */,

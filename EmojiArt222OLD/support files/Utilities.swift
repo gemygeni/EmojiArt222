@@ -118,7 +118,7 @@ extension UIImage
 	}
 	
 	func storeLocallyAsJPEG(named name: String) -> URL? {
-        if let imageData = self.jpegData(compressionQuality: 1.0) {
+        if let imageData = self.UIImageJPEGRepresentation(compressionQuality: 1.0) {
 			if let url = UIImage.urlToStoreLocallyAsJPEG(named: name) {
 				do {
 					try imageData.write(to: url)
